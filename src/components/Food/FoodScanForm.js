@@ -28,11 +28,10 @@ export const FoodScanForm = () => {
 
     return (
         <>
-            <h1>Food Scan Here:</h1>
             <form onSubmit={(e) => {
                 e.preventDefault()
                 }}>
-                <input id="barcode" name="barcode" type="text"/>
+                <input hidden id="barcode" name="barcode" type="text"/>
             </form>
         </>
     )
