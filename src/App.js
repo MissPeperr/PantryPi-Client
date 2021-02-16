@@ -1,7 +1,7 @@
 import { FoodList } from './components/Food/FoodList';
 import { FoodProvider } from './components/Food/FoodProvider';
 import { FoodScanForm } from './components/Food/FoodScanForm';
-import React from "react"
+import React, { useState } from "react"
 import {
   Box,
   Button,
@@ -9,10 +9,12 @@ import {
   Grommet,
   ResponsiveContext,
 } from 'grommet';
-import { Down, Raspberry } from 'grommet-icons'
+import { Down, Raspberry, Trash } from 'grommet-icons'
 import { Navbar } from './components/NavBar/NavBar';
 
 function App() {
+  const [isDeleting, setDeleting] = useState(false)
+
   const theme = {
     global: {
       colors: {
@@ -35,7 +37,8 @@ function App() {
               <Navbar>
                 <Heading level='3' margin='none'>
                   Pantry Pi
-                <Raspberry /></Heading>
+                <Raspberry />
+                </Heading>
                 <Button
                   icon={<Down />}
                   onClick={() => { }}
@@ -44,6 +47,12 @@ function App() {
               <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
                 <Box flex align='center' justify='center'>
                   <FoodProvider>
+                    <Button
+                      primary
+                      label="Remove Food by Scanning"
+                      icon={<Trash />}
+                      onClick={() => { setDeleting(!isDeleting) }}
+                    />
                     <FoodList />
                     <FoodScanForm />
                   </FoodProvider>
