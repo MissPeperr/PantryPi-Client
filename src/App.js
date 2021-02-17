@@ -1,19 +1,17 @@
-import { FoodList } from './components/Food/FoodList';
-import { FoodProvider } from './components/Food/FoodProvider';
-import { FoodScanForm } from './components/Food/FoodScanForm';
-import React, { useState } from "react"
+import { FoodList } from './components/Food/FoodList'
+import { FoodProvider } from './components/Food/FoodProvider'
+import { FoodScanForm } from './components/Food/FoodScanForm'
+import React from "react"
 import {
   Box,
-  Button,
   Heading,
   Grommet,
   ResponsiveContext,
 } from 'grommet';
-import { Down, Raspberry, Trash } from 'grommet-icons'
-import { Navbar } from './components/NavBar/NavBar';
+import { Raspberry } from 'grommet-icons'
+import { Navbar } from './components/NavBar/NavBar'
 
-function App() {
-  const [isDeleting, setDeleting] = useState(false)
+export const App = () => {
 
   const theme = {
     global: {
@@ -29,6 +27,7 @@ function App() {
   }
 
   return (
+
     <Grommet theme={theme} full>
       <ResponsiveContext.Consumer>
         {
@@ -39,27 +38,16 @@ function App() {
                   Pantry Pi
                 <Raspberry />
                 </Heading>
-                <Button
-                  icon={<Down />}
-                  onClick={() => { }}
-                />
               </Navbar>
               <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
                 <Box flex align='center' justify='center'>
+
                   <FoodProvider>
-                    <Button
-                      primary
-                      label="Remove Food by Scanning"
-                      icon={<Trash />}
-                      onClick={() => { setDeleting(!isDeleting) }}
-                    />
-                    <FoodList />
                     <FoodScanForm />
+                    <FoodList />
                   </FoodProvider>
                 </Box>
-
               </Box>
-
             </Box>
           )
         }
@@ -68,5 +56,3 @@ function App() {
     </Grommet>
   );
 }
-
-export default App;

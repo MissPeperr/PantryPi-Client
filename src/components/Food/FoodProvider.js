@@ -20,9 +20,16 @@ export const FoodProvider = (props) => {
         .then(getFoods)
     }
 
+    const deleteFoodByBarcode = (barcode) => {
+        return fetch(`${url}/food?barcode=${barcode}`, {
+            method: "DELETE"
+        })
+        .then(getFoods)
+    }
+    
     return (
         <FoodContext.Provider value={{
-            foods, getFoods, getFoodByBarcode, singleFood
+            foods, getFoods, getFoodByBarcode, singleFood, deleteFoodByBarcode
         }}>
             {props.children}
         </FoodContext.Provider>
