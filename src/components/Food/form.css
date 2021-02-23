@@ -1,0 +1,10 @@
+.nopx {
+   height: 0px;
+   width: 0px;
+   border: none;
+   outline: none;
+}
+
+.nopx:focus {
+    outline: none;
+}

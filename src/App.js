@@ -41,7 +41,6 @@ export const App = () => {
               </Navbar>
               <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
                 <Box flex align='center' justify='center'>
-
                   <FoodProvider>
                     <FoodScanForm />
                     <FoodList />

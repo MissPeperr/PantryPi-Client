@@ -1,13 +1,13 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useContext, useState, useRef, useDebugValue } from 'react'
 import { Button } from 'grommet'
 import { Trash, Add } from 'grommet-icons'
 import { FoodContext } from './FoodProvider'
+import "./form.css"
 
 export const FoodScanForm = () => {
-    const { getFoodByBarcode, deleteFoodByBarcode } = useContext(FoodContext)
 
-    const [isDeleting, setDeleting] = useState(false)
-
+    const { getFoodByBarcode, deleteFoodByBarcode, isDeleting, setDeleting } = useContext(FoodContext)
+    const barcode = useRef(null)
     let wholeBarcode = ""
 
     useEffect(() => {
@@ -41,9 +41,10 @@ export const FoodScanForm = () => {
             <Button
                 reverse
                 primary
-                label={isDeleting ? "Add food by Scanning" : "Remove Food by Scanning"}
+                label={isDeleting ? "Click here to Add Food" : "Click here to Remove Food"}
                 icon={isDeleting ? <Add /> : <Trash />}
                 onClick={(e) => {
+                    barcode.current.focus()
                     e.preventDefault()
                     setDeleting(!isDeleting)
                 }}
@@ -52,7 +53,8 @@ export const FoodScanForm = () => {
                 e.preventDefault()
                 wholeBarcode = ""
             }}>
-                <input hidden id="barcode" name="barcode" type="text" />
+                {/* using new-password so autofill doesn't show up on 0px input */}
+                <input id="barcode" autocomplete="new-password" ref={barcode} name="barcode" type="password" className="nopx" />
             </form>
         </>
     )
