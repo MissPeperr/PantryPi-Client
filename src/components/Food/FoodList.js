@@ -1,8 +1,9 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
+import { List } from 'grommet'
+import { Close, Checkmark } from 'grommet-icons';
 import { FoodContext } from './FoodProvider'
-import { Food } from "./Food"
 
-export const FoodList = () => {
+export const FoodList = (props) => {
     const { foods, getFoods } = useContext(FoodContext)
 
     useEffect(() => {
@@ -12,13 +13,15 @@ export const FoodList = () => {
     return (
         <>
             <h1>Food List</h1>
-            <div className="food__list">
-                {
-                    foods.map(singleFood => (
-                        <Food key={singleFood.id} foodObj={singleFood}/>
-                    ))
-                }
-            </div>
+            <List
+                primaryKey="name"
+                secondaryKey="quantity"
+                alignSelf="stretch"
+                data={foods}
+                action={(item, index) => (
+                    item.on_grocery_list ? <Close color="red" /> : <Checkmark color="green" />
+                )}
+            />
         </>
     )
 }
